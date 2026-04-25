@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110" width="110" height="110">
+  <!-- 121 logo: blue circle with "121" in white and Hebrew subtitle -->
+  <circle cx="55" cy="55" r="52" fill="#1F4DA8"/>
+  <!-- "121" bold white text -->
+  <text x="55" y="58" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif" font-size="34" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">121</text>
+  <!-- Hebrew subtitle: מנוע לשינוי חברתי -->
+  <text x="55" y="80" font-family="'Arial', sans-serif" font-size="9" fill="white" text-anchor="middle" letter-spacing="0.3">מנוע לשינוי חברתי</text>
+  <!-- Small plus sign before the Hebrew text -->
+  <text x="55" y="70" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">+</text>
+</svg>

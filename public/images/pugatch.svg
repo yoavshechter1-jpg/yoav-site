@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 110" width="360" height="110">
+  <!-- Pugatch Consilium logo recreation -->
+  <!-- Icon: stylized orange "p" with pill/circle arc on left -->
+  <g transform="translate(10, 8)">
+    <!-- The "p" icon: an arc (like a pill/D) in orange -->
+    <!-- Left vertical stem -->
+    <rect x="8" y="15" width="11" height="68" rx="5.5" fill="#F5A623"/>
+    <!-- Right arc (semicircle) -->
+    <path d="M 19 20 Q 58 20 58 49 Q 58 78 19 78" fill="none" stroke="#F5A623" stroke-width="11" stroke-linecap="round"/>
+    <!-- Small dot above, like an i -->
+    <circle cx="19" cy="7" r="7" fill="#F5A623"/>
+  </g>
+  <!-- "pugatch" in steel/sky blue -->
+  <text x="82" y="68" font-family="'Trebuchet MS', Arial Rounded MT Bold, Arial, sans-serif" font-size="34" font-weight="700" fill="#5BA8D4" letter-spacing="-0.5">pugatch</text>
+  <!-- "consilium" in orange -->
+  <text x="228" y="68" font-family="'Trebuchet MS', Arial Rounded MT Bold, Arial, sans-serif" font-size="34" font-weight="400" fill="#F5A623" letter-spacing="-0.5">consilium</text>
+</svg>

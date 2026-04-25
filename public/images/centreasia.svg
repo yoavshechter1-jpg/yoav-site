@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 110" width="160" height="110">
+  <!-- The Centre Asia logo: "CA" serif monogram + text -->
+  <!-- Background: light cream/off-white with subtle border -->
+  <rect x="0" y="0" width="160" height="110" rx="4" fill="#F5F0E8" stroke="#C8B89A" stroke-width="1"/>
+  <!-- "CA" large serif letters in dark burgundy/brown -->
+  <text x="80" y="58" font-family="'Georgia', 'Times New Roman', serif" font-size="44" font-weight="700" fill="#7B2D2D" text-anchor="middle" letter-spacing="4">CA</text>
+  <!-- "The Centre Asia" -->
+  <text x="80" y="75" font-family="'Georgia', serif" font-size="10" fill="#5C3A1E" text-anchor="middle" letter-spacing="1.5">The Centre Asia</text>
+  <!-- "FOR CORPORATE PUBLIC AFFAIRS" -->
+  <text x="80" y="90" font-family="Arial, sans-serif" font-size="7" fill="#7A6050" text-anchor="middle" letter-spacing="1">FOR CORPORATE PUBLIC AFFAIRS</text>
+</svg>

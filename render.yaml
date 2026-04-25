@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: yoav-shechter-site
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: EMAIL_USER
+        sync: false   # Set in Render dashboard: your Gmail address
+      - key: EMAIL_APP_PASS
+        sync: false   # Set in Render dashboard: Gmail App Password (not your login password)
+      - key: EMAIL_TO
+        value: yoav.shechter1@gmail.com

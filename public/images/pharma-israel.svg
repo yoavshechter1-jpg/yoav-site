@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <!-- PHARMA ISRAEL logo: EN text | molecule circle | HE text -->
+
+  <!-- Left: PHARMA / ISRAEL stacked text -->
+  <text x="72" y="32" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif"
+        font-size="19" font-weight="900" fill="#0D5C7A" text-anchor="middle" letter-spacing="1.5">PHARMA</text>
+  <text x="72" y="52" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif"
+        font-size="19" font-weight="900" fill="#0D5C7A" text-anchor="middle" letter-spacing="1.5">ISRAEL</text>
+
+  <!-- Center: molecule circle emblem -->
+  <g transform="translate(150, 40)">
+    <!-- Outer circle ring (teal/blue gradient-ish) -->
+    <circle cx="0" cy="0" r="34" fill="#1A7BA4"/>
+    <circle cx="0" cy="0" r="28" fill="#1E8DBB"/>
+    <!-- Inner white area -->
+    <circle cx="0" cy="0" r="22" fill="white"/>
+    <!-- Spokes (8 at 45-degree intervals) -->
+    <line x1="0" y1="0" x2="0" y2="-15" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="10.6" y2="-10.6" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="15" y2="0" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="10.6" y2="10.6" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="0" y2="15" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="-10.6" y2="10.6" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="-15" y2="0" stroke="#888" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="-10.6" y2="-10.6" stroke="#888" stroke-width="1.5"/>
+    <!-- Outer dots (green) at spoke tips -->
+    <circle cx="0"     cy="-15"  r="3.5" fill="#6DBE45"/>
+    <circle cx="10.6"  cy="-10.6" r="3.5" fill="#6DBE45"/>
+    <circle cx="15"    cy="0"    r="3.5" fill="#6DBE45"/>
+    <circle cx="10.6"  cy="10.6" r="3.5" fill="#6DBE45"/>
+    <circle cx="0"     cy="15"   r="3.5" fill="#6DBE45"/>
+    <circle cx="-10.6" cy="10.6" r="3.5" fill="#6DBE45"/>
+    <circle cx="-15"   cy="0"    r="3.5" fill="#6DBE45"/>
+    <circle cx="-10.6" cy="-10.6" r="3.5" fill="#6DBE45"/>
+    <!-- Center dot (green, slightly larger) -->
+    <circle cx="0" cy="0" r="5" fill="#6DBE45"/>
+  </g>
+
+  <!-- Right: Hebrew text פארמה / ישראל (RTL, right-aligned) -->
+  <text x="228" y="32" font-family="'Arial', 'Helvetica', sans-serif"
+        font-size="19" font-weight="900" fill="#0D5C7A" text-anchor="middle" letter-spacing="0.5">פארמה</text>
+  <text x="228" y="52" font-family="'Arial', 'Helvetica', sans-serif"
+        font-size="19" font-weight="900" fill="#0D5C7A" text-anchor="middle" letter-spacing="0.5">ישראל</text>
+</svg>

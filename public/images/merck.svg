@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" width="240" height="100">
+  <!-- Merck logo: teal 4-petal clover + MERCK wordmark -->
+  <!-- 4-petal clover centered at (48, 50) -->
+  <g transform="translate(48,50)">
+    <!-- Top petal -->
+    <ellipse cx="0" cy="-18" rx="13" ry="18" fill="#00857C"/>
+    <!-- Bottom petal -->
+    <ellipse cx="0" cy="18" rx="13" ry="18" fill="#00857C"/>
+    <!-- Left petal -->
+    <ellipse cx="-18" cy="0" rx="18" ry="13" fill="#00857C"/>
+    <!-- Right petal -->
+    <ellipse cx="18" cy="0" rx="18" ry="13" fill="#00857C"/>
+    <!-- Center circle white -->
+    <circle cx="0" cy="0" r="10" fill="white"/>
+  </g>
+  <!-- MERCK bold text -->
+  <text x="84" y="65" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif" font-size="38" font-weight="900" fill="#1A1A1A" letter-spacing="2">MERCK</text>
+</svg>
