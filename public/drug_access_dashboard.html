@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סקר נגישות תרופות · ישראל 2021-2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Assistant:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #08101e;
+  --bg2: #0f1a2e;
+  --bg3: #162038;
+  --bg4: #1c2a47;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --accent: #4f9cf9;
+  --accent2: #a78bfa;
+  --accent3: #34d399;
+  --gold: #f59e0b;
+  --text: #e8f0fa;
+  --text-muted: #8faac8;
+  --text-dim: #b8d0e8;
+  --c1: #4f9cf9;
+  --c2: #a78bfa;
+  --c3: #34d399;
+  --c4: #f97316;
+  --c5: #ec4899;
+  --c6: #06b6d4;
+  --c7: #f59e0b;
+  --c8: #8b5cf6;
+  --c9: #ef4444;
+  --c10: #22c55e;
+  --c11: #14b8a6;
+  --c12: #eab308;
+  --strength: #34d399;
+  --weakness: #ef4444;
+  --neutral: #f59e0b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Heebo', 'Assistant', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, #060f1d 0%, #0d1630 40%, #0a1228 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(24px);
+}
+.header-inner {
+  max-width: 1540px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  gap: 1rem;
+  overflow: hidden;
+}
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+.flag-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(79,156,249,0.3);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  background: var(--bg3);
+}
+.logo-text-group { line-height: 1.25; text-align: right; }
+.logo-country {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+}
+.logo-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  direction: ltr;
+  text-align: right;
+}
+.header-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+}
+.gipc-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.gipc-label strong {
+  display: block;
+  color: var(--accent2);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+@media (max-width: 1024px) { .gipc-label, .header-divider { display: none; } }
+
+nav {
+  display: flex;
+  gap: 3px;
+  background: rgba(255,255,255,0.03);
+  padding: 4px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  flex-wrap: nowrap;
+}
+nav button {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 0.42rem 1rem;
+  border-radius: 8px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+nav button.active {
+  background: linear-gradient(135deg, var(--accent), #3b82f6);
+  color: white;
+  box-shadow: 0 2px 12px rgba(79,156,249,0.35);
+}
+nav button:hover:not(.active) {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+/* ── LAYOUT ── */
+main {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── HERO STATS ── */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.hero-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.hero-card.red::before { background: linear-gradient(90deg, var(--weakness), var(--c4)); }
+.hero-card.gold::before { background: linear-gradient(90deg, var(--gold), var(--c4)); }
+.hero-card.purple::before { background: linear-gradient(90deg, var(--accent2), var(--c8)); }
+.hero-card::after {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.hero-card.red::after { background: var(--weakness); }
+.hero-card.gold::after { background: var(--gold); }
+.hero-card.purple::after { background: var(--accent2); }
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+  direction: ltr;
+  text-align: right;
+}
+.hero-value {
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: 'Heebo', sans-serif;
+  direction: ltr;
+  text-align: right;
+}
+.hero-card.red .hero-value { color: var(--weakness); }
+.hero-card.gold .hero-value { color: var(--gold); }
+.hero-card.purple .hero-value { color: var(--accent2); }
+.hero-headline {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  line-height: 1.45;
+}
+.hero-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── KPI grid (smaller) ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.kpi-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.kpi-card:hover { border-color: var(--border2); }
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.kpi-card.blue::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.kpi-card.green::before { background: linear-gradient(90deg, var(--strength), #06b6d4); }
+.kpi-card.gold::before { background: linear-gradient(90deg, var(--gold), #f97316); }
+.kpi-card.purple::before { background: linear-gradient(90deg, var(--accent2), var(--c8)); }
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+.kpi-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  direction: ltr;
+  text-align: right;
+}
+.kpi-card.blue .kpi-value { color: var(--accent); }
+.kpi-card.green .kpi-value { color: var(--strength); }
+.kpi-card.gold .kpi-value { color: var(--gold); }
+.kpi-card.purple .kpi-value { color: var(--accent2); }
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+/* ── PANEL ── */
+.panel {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.panel-header {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.panel-title {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: white;
+}
+.panel-title span.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+  font-weight: 400;
+  direction: ltr;
+}
+.panel-body {
+  padding: 1.5rem;
+}
+
+/* ── TWO column overview ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .two-col { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── TA cards grid ── */
+.ta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+}
+@media (max-width: 1200px) { .ta-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) { .ta-grid { grid-template-columns: 1fr; } }
+
+.ta-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.35rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.ta-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+.ta-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 4px;
+  height: 100%;
+}
+.ta-card .ta-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.35rem;
+}
+.ta-card .ta-name-en {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  direction: ltr;
+  text-align: right;
+}
+.ta-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.ta-stat-mini {
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+}
+.ta-stat-mini .lab {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  direction: ltr;
+  text-align: right;
+}
+.ta-stat-mini .val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  direction: ltr;
+  text-align: right;
+}
+.ta-stat-mini .unit {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-right: 0.2rem;
+}
+.ta-patients {
+  background: linear-gradient(135deg, rgba(79,156,249,0.08), rgba(167,139,250,0.05));
+  border: 1px solid rgba(79,156,249,0.15);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ta-patients .lab {
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+.ta-patients .val {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  direction: ltr;
+}
+
+/* color accents per TA */
+.ta-card.c1::before { background: var(--c1); }
+.ta-card.c1 .ta-stat-mini .val { color: var(--c1); }
+.ta-card.c2::before { background: var(--c2); }
+.ta-card.c2 .ta-stat-mini .val { color: var(--c2); }
+.ta-card.c3::before { background: var(--c3); }
+.ta-card.c3 .ta-stat-mini .val { color: var(--c3); }
+.ta-card.c4::before { background: var(--c4); }
+.ta-card.c4 .ta-stat-mini .val { color: var(--c4); }
+.ta-card.c5::before { background: var(--c5); }
+.ta-card.c5 .ta-stat-mini .val { color: var(--c5); }
+.ta-card.c6::before { background: var(--c6); }
+.ta-card.c6 .ta-stat-mini .val { color: var(--c6); }
+.ta-card.c7::before { background: var(--c7); }
+.ta-card.c7 .ta-stat-mini .val { color: var(--c7); }
+.ta-card.c8::before { background: var(--c8); }
+.ta-card.c8 .ta-stat-mini .val { color: var(--c8); }
+.ta-card.c9::before { background: var(--c9); }
+.ta-card.c9 .ta-stat-mini .val { color: var(--c9); }
+.ta-card.c10::before { background: var(--c10); }
+.ta-card.c10 .ta-stat-mini .val { color: var(--c10); }
+.ta-card.c11::before { background: var(--c11); }
+.ta-card.c11 .ta-stat-mini .val { color: var(--c11); }
+.ta-card.c12::before { background: var(--c12); }
+.ta-card.c12 .ta-stat-mini .val { color: var(--c12); }
+
+/* ── chart wrap ── */
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 380px;
+}
+.chart-wrap.tall { height: 480px; }
+.chart-wrap.short { height: 260px; }
+
+/* ── data table ── */
+.data-table-wrap {
+  overflow-x: auto;
+  max-height: 700px;
+  overflow-y: auto;
+}
+table.detail {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+table.detail th {
+  background: var(--bg3);
+  padding: 0.7rem 0.8rem;
+  text-align: right;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border2);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+table.detail td {
+  padding: 0.72rem 0.8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: top;
+  color: var(--text);
+}
+table.detail tr:hover td { background: rgba(255,255,255,0.02); }
+table.detail .num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--accent);
+  white-space: nowrap;
+  text-align: center;
+  direction: ltr;
+}
+table.detail .ta-tag {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+table.detail .indication {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  max-width: 460px;
+}
+table.detail .drug {
+  font-weight: 700;
+  color: white;
+  direction: ltr;
+  text-align: right;
+}
+table.detail .check {
+  text-align: center;
+  font-size: 1.1rem;
+}
+table.detail .check.full { color: var(--strength); }
+table.detail .check.partial { color: var(--gold); }
+
+/* ── conclusion blocks ── */
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.conclusion-card {
+  background: linear-gradient(135deg, rgba(79,156,249,0.05), rgba(167,139,250,0.03));
+  border: 1px solid rgba(79,156,249,0.18);
+  border-radius: 18px;
+  padding: 1.75rem;
+}
+.conclusion-card.warn {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(245,158,11,0.04));
+  border-color: rgba(239,68,68,0.2);
+}
+.conclusion-num {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  direction: ltr;
+  text-align: right;
+}
+.conclusion-card.warn .conclusion-num { color: var(--weakness); }
+.conclusion-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: white;
+}
+.conclusion-text {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 0.8rem;
+}
+.source {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+  margin-top: 0.8rem;
+  direction: ltr;
+  text-align: right;
+}
+.source a { color: var(--accent); text-decoration: none; }
+.source a:hover { text-decoration: underline; }
+
+/* ── timeline ── */
+.timeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.timeline-year {
+  flex: 1;
+  text-align: center;
+  padding: 0.85rem 0.4rem;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.timeline-year:first-child { border-right: none; }
+.timeline-year .y {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+.timeline-year .d {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.timeline-year.approved {
+  background: linear-gradient(180deg, rgba(52,211,153,0.08), transparent);
+}
+.timeline-year.approved .d { color: var(--strength); }
+
+/* ── filter chips ── */
+.filter-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.filter-chip {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 0.32rem 0.78rem;
+  border-radius: 14px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Heebo', sans-serif;
+}
+.filter-chip:hover { background: rgba(255,255,255,0.07); }
+.filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* ── footer ── */
+footer {
+  max-width: 1540px;
+  margin: 2rem auto 1rem auto;
+  padding: 0 2rem 2rem 2rem;
+  text-align: center;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+footer .src-link { color: var(--text-dim); }
+
+/* utility */
+.legend-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.legend-dot {
+  width: 12px; height: 12px;
+  border-radius: 3px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #2a3a5e; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-group">
+      <div class="flag-badge">🇮🇱</div>
+      <div class="logo-text-group">
+        <div class="logo-country">סקר נגישות תרופות בישראל</div>
+        <div class="logo-sub">DRUG ACCESS SURVEY · 2021–2025</div>
+      </div>
+      <div class="header-divider"></div>
+      <div class="gipc-label">
+        <strong>פערי זמן הנגשה</strong>
+        השוואה לאישורי EU / FDA · 12 תחומים טיפוליים
+      </div>
+    </div>
+    <nav>
+      <button class="active" data-view="overview">סיכום מנהלים</button>
+      <button data-view="ta">תחומים טיפוליים</button>
+      <button data-view="trends">מגמות שנתיות</button>
+      <button data-view="approvals">סוג אישור</button>
+      <button data-view="detail">פירוט תרופות</button>
+      <button data-view="conclusion">מסקנות</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================== OVERVIEW ============================== -->
+<section class="view active" id="view-overview">
+
+  <div class="hero-stats">
+    <div class="hero-card red">
+      <div class="hero-eyebrow">LAG VS. EUROPE</div>
+      <div class="hero-value">×3.2</div>
+      <div class="hero-headline">פי 3.2 זמן ארוך יותר להנגשת תרופות בישראל</div>
+      <div class="hero-sub">בהשוואה לזמן ההנגשה הממוצע במדינות אירופה</div>
+    </div>
+    <div class="hero-card gold">
+      <div class="hero-eyebrow">PARTIALLY APPROVED</div>
+      <div class="hero-value">45%</div>
+      <div class="hero-headline">מהאינדיקציות אושרו באופן חלקי</div>
+      <div class="hero-sub">ולא במסגרת ההכללה המלאה של אישור הרגולטור</div>
+    </div>
+    <div class="hero-card purple">
+      <div class="hero-eyebrow">AVG GAP</div>
+      <div class="hero-value">4.7<span style="font-size:1.6rem;">y</span></div>
+      <div class="hero-headline">פער ממוצע משוקלל מאישור עד הכללה בסל</div>
+      <div class="hero-sub">חציון על פני 12 תחומים טיפוליים, 2021–2025</div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card blue">
+      <div class="kpi-label">תחומים טיפוליים שנסקרו</div>
+      <div class="kpi-value">12</div>
+      <div class="kpi-sub">מ-Rheumatology ועד Vaccines</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">תקופת הסקר</div>
+      <div class="kpi-value">5y</div>
+      <div class="kpi-sub">2021–2025 · החלטות סל שנתיות</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">סך מטופלים מושפעים</div>
+      <div class="kpi-value">552K+</div>
+      <div class="kpi-sub">בכלל התחומים שנסקרו</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">פער מקסימלי שתועד</div>
+      <div class="kpi-value">9y</div>
+      <div class="kpi-sub">Neurology · Cardiology · Pulmonology</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">פער ממוצע (שנים) להנגשה בסל הבריאות לעומת אישור EU/FDA<span class="eyebrow">AVG ∆ PER TA · 5Y</span></div>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap"><canvas id="chartTAOverview"></canvas></div>
+      <div class="legend-row">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c1);"></div>פער ממוצע מאישור EMA</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c4);"></div>פער ממוצע מאישור FDA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">חלוקת מטופלים מושפעים לפי תחום<span class="eyebrow">PATIENTS AFFECTED</span></div>
+      </div>
+      <div class="panel-body">
+        <div class="chart-wrap"><canvas id="chartPatients"></canvas></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">חלוקת אישור מלא מול אישור חלקי<span class="eyebrow">FULL VS PARTIAL</span></div>
+      </div>
+      <div class="panel-body">
+        <div class="chart-wrap"><canvas id="chartApprovalDoughnut"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================== TA CARDS ============================== -->
+<section class="view" id="view-ta">
+  <div class="panel" style="margin-bottom:1.5rem;">
+    <div class="panel-header">
+      <div class="panel-title">12 תחומים טיפוליים · נתוני 5 שנים<span class="eyebrow">THERAPEUTIC AREAS</span></div>
+    </div>
+  </div>
+  <div class="ta-grid" id="taGrid"></div>
+</section>
+
+<!-- ============================== TRENDS ============================== -->
+<section class="view" id="view-trends">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">מגמת פער ממוצע לפי שנה ולפי תחום<span class="eyebrow">YEAR-OVER-YEAR · 2021–2025</span></div>
+    </div>
+    <div class="filter-chips" id="trendChips"></div>
+    <div class="panel-body">
+      <div class="chart-wrap tall"><canvas id="chartTrends"></canvas></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">מטריצת פער מאישור EMA לפי שנה ותחום<span class="eyebrow">HEATMAP · ∆ EU</span></div>
+    </div>
+    <div class="panel-body">
+      <div id="heatmap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== APPROVALS ============================== -->
+<section class="view" id="view-approvals">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">% אינדיקציות שאושרו במלואן מול אישור חלקי לפי תחום<span class="eyebrow">FULLY VS PARTIALLY APPROVED</span></div>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap tall"><canvas id="chartApprovalStacked"></canvas></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="conclusion-card warn">
+      <div class="conclusion-num">79%</div>
+      <div class="conclusion-title">קרדיולוגיה — שיעור האישורים החלקיים הגבוה ביותר</div>
+      <div class="conclusion-text">
+        בתחום הקרדיולוגיה, רק 21% מהאינדיקציות נכללו באופן מלא בסל הבריאות,
+        בעוד שיתר האינדיקציות אושרו עם תנאים מגבילים, במסגרת מצומצמת
+        של אוכלוסיית מטופלים, או רק עבור קווי טיפול מתקדמים.
+      </div>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">86%</div>
+      <div class="conclusion-title">HIV / זיהומיות — שיעור הכלילה המלא הגבוה ביותר</div>
+      <div class="conclusion-text">
+        בתחום ה-HIV וזיהומיות 86% מהאינדיקציות אושרו במלואן עם הכללה
+        מקיפה בסל. הסיבה לכך היא חשיבות בריאות הציבור והשפעה על העברה,
+        גם כאשר מספר המטופלים היחסי קטן.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== DETAIL TABLE ============================== -->
+<section class="view" id="view-detail">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">פירוט אינדיקציות שנכללו בסל לפי תחום ושנה<span class="eyebrow">DRUG-LEVEL DETAIL</span></div>
+    </div>
+    <div class="filter-chips" id="taFilterChips"></div>
+    <div class="data-table-wrap">
+      <table class="detail" id="detailTable">
+        <thead>
+          <tr>
+            <th>תחום</th>
+            <th>שנת הכללה</th>
+            <th>תרופה</th>
+            <th>אינדיקציה</th>
+            <th>EMA</th>
+            <th>FDA</th>
+            <th>∆EU</th>
+            <th>∆FDA</th>
+            <th>מלא</th>
+            <th>חלקי</th>
+            <th>מטופלים</th>
+          </tr>
+        </thead>
+        <tbody id="detailBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONCLUSION ============================== -->
+<section class="view" id="view-conclusion">
+
+  <div class="panel" style="background: linear-gradient(135deg, rgba(239,68,68,0.06), rgba(245,158,11,0.04)); border-color: rgba(239,68,68,0.2);">
+    <div class="panel-body">
+      <div style="font-family:'Heebo',sans-serif; font-weight:800; font-size:3.6rem; color:var(--weakness); line-height:1; margin-bottom:0.6rem; direction:ltr; text-align:right;">×3.2</div>
+      <div style="font-size:1.35rem; font-weight:700; color:white; margin-bottom:0.7rem;">פי 3.2 זמן ארוך יותר להנגשת תרופות בישראל בהשוואה לאירופה</div>
+      <div style="font-size:0.92rem; color:var(--text-dim); line-height:1.7;">
+        מטופלים בישראל ממתינים פי שלושה יותר זמן לקבל גישה לתרופות חדשות
+        בהשוואה לזמן ההנגשה הממוצע במדינות אירופה — וזאת על אף שמדובר באותן
+        תרופות, באותן אינדיקציות, ועם אותו אישור רגולטורי של EMA או FDA.
+      </div>
+      <div class="source">
+        Source: <a href="https://www.statista.com/statistics/1248706/europe-time-between-oncology-medicine-authorization-and-access/" target="_blank">"Europe time between medicine authorization and access", 2024 · Statista</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">תרחיש מטופל ממוצע — מאישור עד הנגשה בישראל<span class="eyebrow">PATIENT JOURNEY</span></div>
+    </div>
+    <div class="panel-body">
+      <div style="font-size:0.88rem; color:var(--text-dim); margin-bottom:0.5rem;">
+        אישור EMA / FDA → המתנה ממוצעת של 4.7 שנים → הכללה בסל בישראל
+      </div>
+      <div class="timeline">
+        <div class="timeline-year approved">
+          <div class="y">Y0</div>
+          <div class="d">EMA / FDA</div>
+          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.3rem;">אישור</div>
+        </div>
+        <div class="timeline-year">
+          <div class="y">Y1</div>
+          <div class="d">המתנה</div>
+        </div>
+        <div class="timeline-year">
+          <div class="y">Y2</div>
+          <div class="d">המתנה</div>
+        </div>
+        <div class="timeline-year">
+          <div class="y">Y3</div>
+          <div class="d">המתנה</div>
+        </div>
+        <div class="timeline-year">
+          <div class="y">Y4</div>
+          <div class="d">המתנה</div>
+        </div>
+        <div class="timeline-year approved">
+          <div class="y">Y4.7</div>
+          <div class="d">סל ישראל</div>
+          <div style="font-size:0.7rem;color:var(--strength);margin-top:0.3rem;">הכללה</div>
+        </div>
+      </div>
+      <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.7rem;">
+        זמן ההמתנה הממוצע הוא 4.7 שנים מרגע אישור הרגולטור עד שהתרופה נגישה
+        בפועל למטופל הישראלי דרך סל שירותי הבריאות.
+      </div>
+    </div>
+  </div>
+
+  <div class="conclusion-grid">
+    <div class="conclusion-card warn">
+      <div class="conclusion-num">45%</div>
+      <div class="conclusion-title">פחות ממחצית האינדיקציות נכללות במלואן</div>
+      <div class="conclusion-text">
+        45% מהאינדיקציות שנכנסו לסל הבריאות בין השנים 2021–2025 הוכללו רק
+        באופן חלקי — עם הגבלות קו טיפול, מסגרת אוכלוסייה מצומצמת, או דרישות
+        כשל בטיפולים קודמים. זאת לעומת אישור מלא ורחב יותר במדינות
+        ייחוס באירופה ובארה"ב.
+      </div>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">552K+</div>
+      <div class="conclusion-title">מטופלים מושפעים מהפער</div>
+      <div class="conclusion-text">
+        סך המטופלים המושפעים מאישור מאוחר או חלקי בתחומים שנסקרו עומד על
+        מעל חצי מיליון מטופלים. ההשפעה הקשה ביותר נצפית בתחומים בהיקף
+        אוכלוסייה רחבה — חיסונים (318K+), סוכרת (85K+) ופולמונולוגיה (57K+).
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:1.5rem;">
+    <div class="panel-header">
+      <div class="panel-title">מתודולוגיה<span class="eyebrow">METHODOLOGY</span></div>
+    </div>
+    <div class="panel-body">
+      <div style="font-size:0.88rem; color:var(--text-dim); line-height:1.75;">
+        הסקר נערך על בסיס החלטות סל הבריאות בישראל בשנים 2021–2025, תוך
+        השוואה לתאריכי האישור הרגולטוריים של EMA (האיחוד האירופי) ו-FDA
+        (ארה"ב). ה-∆ (פער) מחושב במספר שנים בין אישור הרגולטור לבין מועד
+        ההכללה בסל. סוג הכלילה (חלקי / מלא) נקבע על בסיס היקף האינדיקציה,
+        קו הטיפול והתניות נוספות בנוסח החלטת הסל. נתוני המטופלים המושפעים
+        נלקחים מנתוני ועדת הסל ומאומדנים אפידמיולוגיים מקומיים.
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  סקר נגישות תרופות · ישראל 2021–2025 · 12 תחומים טיפוליים · בהשוואה ל-EMA / FDA
+  <br>
+  <span class="src-link">מקורות: סל שירותי הבריאות · EMA · FDA · נתוני אומדן מטופלים מקומיים · Statista 2024</span>
+</footer>
+
+<script>
+// ============================== DATA ==============================
+
+const TA_DATA = [
+  { id:'rheum',  he:'ראומטולוגיה',         en:'Rheumatology',     eu:2.0, fda:3.0, pts:782,    color:'c1', partial:0.40, full:0.60 },
+  { id:'hema',   he:'המטולוגיה',           en:'Hematology',       eu:5.0, fda:7.0, pts:329,    color:'c2', partial:0.32, full:0.68 },
+  { id:'psy',    he:'פסיכיאטריה',          en:'Psychiatry',       eu:7.5, fda:6.6, pts:30,     color:'c3', partial:0.43, full:0.57 },
+  { id:'neuro',  he:'נוירולוגיה',           en:'Neurology',        eu:8.0, fda:9.0, pts:27361,  color:'c4', partial:0.51, full:0.49 },
+  { id:'cardio', he:'קרדיולוגיה',          en:'Cardiology',       eu:8.0, fda:9.0, pts:35600,  color:'c9', partial:0.79, full:0.21 },
+  { id:'diab',   he:'סוכרת',               en:'Diabetes',         eu:7.0, fda:7.0, pts:85276,  color:'c7', partial:0.55, full:0.45 },
+  { id:'pulm',   he:'פולמונולוגיה',         en:'Pulmonology',      eu:8.0, fda:9.0, pts:57020,  color:'c6', partial:0.50, full:0.50 },
+  { id:'onco',   he:'אונקולוגיה (גידולים מוצקים)', en:'Oncology',  eu:2.4, fda:3.1, pts:3604,   color:'c5', partial:0.20, full:0.80 },
+  { id:'hemo',   he:'המטו-אונקולוגיה',     en:'Hemato-Oncology',  eu:3.8, fda:4.4, pts:3853,   color:'c8', partial:0.23, full:0.77 },
+  { id:'gastro', he:'גסטרואנטרולוגיה',     en:'Gastroenterology', eu:3.4, fda:2.7, pts:3853,   color:'c11', partial:0.28, full:0.72 },
+  { id:'hiv',    he:'HIV / זיהומיות',     en:'HIV + Infectious', eu:2.4, fda:3.3, pts:16023,  color:'c10', partial:0.14, full:0.86 },
+  { id:'vacc',   he:'חיסונים',             en:'Vaccines',         eu:2.9, fda:3.3, pts:318620, color:'c12', partial:0.33, full:0.67 }
+];
+
+// per-year per-TA: { taId: { year: { eu:.., fda:.. } } }
+const YEARLY = {
+  rheum:  { 2021:[1,5],   2022:[1,2],   2023:[3,3],   2024:[null,null], 2025:[4,4]   },
+  hema:   { 2021:[2.7,10],2022:[9.8,10.8], 2023:[4.2,4.3], 2024:[null,null], 2025:[3,3] },
+  psy:    { 2021:[null,null], 2022:[null,null], 2023:[6,8], 2024:[9,9],  2025:[null,2.7] },
+  neuro:  { 2021:[8,9],   2022:[9,9],   2023:[3,3],   2024:[9,11],  2025:[2,3]   },
+  cardio: { 2021:[1,2],   2022:[1,1],   2023:[9,9],   2024:[3,3],   2025:[4,4]   },
+  diab:   { 2021:[7,7],   2022:[6,10],  2023:[9,8],   2024:[4,4],   2025:[8,6]   },
+  pulm:   { 2021:[5,6],   2022:[7,7],   2023:[4,4],   2024:[7,8],   2025:[6,6]   },
+  onco:   { 2021:[2.4,3], 2022:[2,3],   2023:[2.2,3], 2024:[2.7,3.2], 2025:[3,3.4] },
+  hemo:   { 2021:[3.6,4.3], 2022:[5.5,6], 2023:[3.6,4.3], 2024:[3.6,4.3], 2025:[3,3.2] },
+  gastro: { 2021:[6.5,null], 2022:[6,6], 2023:[1,1],  2024:[2,2],   2025:[1.5,2] },
+  hiv:    { 2021:[null,null], 2022:[3.75,7], 2023:[1,1], 2024:[2,3], 2025:[3,2]  },
+  vacc:   { 2021:[0,0],   2022:[7,8],   2023:[1,2],   2024:[0,0],   2025:[6.5,6.5] }
+};
+
+// Drug-level detail (Rheumatology from Excel + Hematology 2021-2022 from PPT)
+const DRUGS = [
+  // Rheumatology
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2021, drug:'Actemra', ind:'טיפול בדלקת פרקים מסוג systemic juvenile idiopathic arthritis - הרחבת מסגרת ההכללה בסל - הקדמת קו והוצאת ההתניה לפיה יש צורך במיצוי טיפולי קודם ב-DMARDs - MTX', ema:2018, fda:2011, dEU:3, dFDA:7, full:false, partial:true, pts:'42' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2021, drug:'Kineret', ind:'טיפול ב-Familial Mediterranean fever', ema:2021, fda:'NA', dEU:0, dFDA:'—', full:false, partial:true, pts:'—' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2021, drug:'Otezla', ind:"טיפול בכיבים בחלל הפה בחולי בכצ'ט כקו שני אחרי ניסיון בקולכיצין", ema:2020, fda:2019, dEU:1, dFDA:2, full:true, partial:false, pts:'280' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2022, drug:'Rinvoq', ind:'טיפול ב-Psoriatic Arthritis כקו שני לאחר כישלון בתכשירים ממשפחת מעכבי TNF', ema:2021, fda:2021, dEU:1, dFDA:'—', full:false, partial:true, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2022, drug:'Rinvoq', ind:'Ankylosing spondylitis - טיפול כקו שני לאחר כישלון בתכשירים ממשפחת מעכבי TNF', ema:2021, fda:2022, dEU:1, dFDA:'—', full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2022, drug:'Saphnelo', ind:'טיפול בזאבת אדמנתית מערכתית (SLE) במבוגרים, בדרגה בינונית עד חמורה, אשר נכשלו על טיפול סטנדרטי', ema:2022, fda:2021, dEU:0, dFDA:1, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2022, drug:'Benlysta', ind:'טיפול בזאבת אדמנתית מערכתית (SLE) - הרחבת מסגרת ההכללה בסל עבור ילדים', ema:2019, fda:2019, dEU:3, dFDA:'—', full:true, partial:false, pts:'25' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2022, drug:'Benlysta', ind:'טיפול ב-lupus nephritis פעילה', ema:2021, fda:2020, dEU:1, dFDA:2, full:true, partial:false, pts:'90' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2023, drug:'Xeljanz', ind:'טיפול ב-Ankylosing spondylitis כקו שני אחרי חוסמי TNF', ema:2021, fda:2021, dEU:2, dFDA:2, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2023, drug:'Evenity', ind:'טיפול באוסטיאופורוזיס - הרחבת מסגרת ההכללה בסל לחולים בסיכון גבוה שלא יכולים לקבל טיפול ב-Teriparatide', ema:2019, fda:2019, dEU:4, dFDA:4, full:false, partial:true, pts:'313' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2025, drug:'Bimzelx', ind:'טיפול ב-Psoriatic arthritis במטופלים שמיצו טיפול בתרופה אחת לפחות ממשפחת ה-DMARDs, לבד או בשילוב עם DMARDs קונבנציונליים', ema:2023, fda:2023, dEU:2, dFDA:2, full:false, partial:true, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2025, drug:'Bimzelx', ind:'טיפול ב-Ankylosing spondylitis פעילה במטופלים שמיצו טיפול קונבנציונלי', ema:2023, fda:2024, dEU:2, dFDA:1, full:false, partial:true, pts:'ללא תוספת' },
+  { ta:'ראומטולוגיה', taKey:'rheum', year:2025, drug:'Ilaris', ind:'טיפול ב-Systemic juvenile idiopathic arthritis - הרחבת מסגרת ההכללה בסל - כקו טיפול ראשון', ema:2013, fda:2013, dEU:8, dFDA:8, full:false, partial:true, pts:'32' },
+
+  // Hematology
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Cablivi', ind:'טיפול ב-thrombotic thrombocytopenic purpura (aTTP) נרכשת בשילוב עם טיפול אימונוסופרסיבי ו-PEX', ema:2018, fda:2019, dEU:2, dFDA:3, full:true, partial:false, pts:'28' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Ultomiris', ind:'טיפול במיאלופיברוזיס בדרגת סיכון intermediate 2 או high (ראשוני או משני) - עבור חולים שטרם נחשפו למעכב JAK', ema:2021, fda:2019, dEU:0, dFDA:2, full:true, partial:false, pts:'99' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Calquence', ind:'טיפול ב-Chronic lymphocytic leukemia (CLL) או Small lymphocytic lymphoma (SLL) - קו טיפול ראשון', ema:2020, fda:2019, dEU:1, dFDA:2, full:true, partial:false, pts:'100' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Lenalidomide-Teva', ind:'טיפול בלימפומה פוליקולרית כקו טיפול מתקדם, בשילוב עם Rituximab', ema:2020, fda:2019, dEU:1, dFDA:2, full:false, partial:true, pts:'102' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Xpovio', ind:'טיפול בלימפומה מסוג DLBCL חוזרת או רפרקטורית, לאחר לפחות 2 קווי טיפול קודמים', ema:'NA', fda:2020, dEU:'—', dFDA:1, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Calquence', ind:'טיפול ב-Mantle cell lymphoma - קו טיפול מתקדם', ema:'NA', fda:2017, dEU:'—', dFDA:4, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Brukinsa', ind:'טיפול ב-Mantle cell lymphoma - קו טיפול מתקדם', ema:2021, fda:2019, dEU:0, dFDA:3, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Lenalidomide-Teva', ind:'טיפול במיאלומה נפוצה כקו טיפול ראשון עבור חולים שמועמדים להשתלת מח עצם', ema:2019, fda:2006, dEU:2, dFDA:14, full:false, partial:true, pts:'200' },
+  { ta:'המטולוגיה', taKey:'hema', year:2021, drug:'Kyprolis', ind:'טיפול במיאלומה נפוצה - קו טיפול מתקדם, הרחבת מסגרת ההכללה בסל לא בשילוב עם Lenalidomide (משלב Kd 56)', ema:2015, fda:2015, dEU:6, dFDA:6, full:false, partial:true, pts:'ללא תוספת' },
+  { ta:'המטולוגיה', taKey:'hema', year:2022, drug:'Revolade', ind:'הרחבת מסגרת טיפול ב-Idiopathic thrombocytopenic purpura (ITP) כרונית או פרסיסטנטית, אחרי מיצוי טיפול בסטרואידים או אימונוגלובולינים', ema:2010, fda:2008, dEU:12, dFDA:14, full:false, partial:true, pts:'227' },
+  { ta:'המטולוגיה', taKey:'hema', year:2022, drug:'Nplate', ind:'טיפול ב-ITP', ema:2009, fda:2008, dEU:13, dFDA:14, full:false, partial:true, pts:'—' },
+  { ta:'המטולוגיה', taKey:'hema', year:2022, drug:'Alprolix', ind:'טיפול בהמופיליה B', ema:2016, fda:2014, dEU:6, dFDA:8, full:true, partial:false, pts:'50' },
+  { ta:'המטולוגיה', taKey:'hema', year:2022, drug:'Nuwiq', ind:'טיפול בהמופיליה A', ema:2014, fda:2015, dEU:8, dFDA:7, full:true, partial:false, pts:'ללא תוספת' },
+  { ta:'המטולוגיה', taKey:'hema', year:2022, drug:'Elocta', ind:'טיפול בהמופיליה A', ema:2015, fda:2014, dEU:7, dFDA:8, full:true, partial:false, pts:'ללא תוספת' }
+];
+
+// ============================== UTILITIES ==============================
+function fmtNum(n){
+  if (n === null || n === undefined || n === '—') return '—';
+  if (typeof n === 'string') return n;
+  return n.toLocaleString('en-US');
+}
+function fmtCompact(n){
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(n>=10000 ? 0 : 1) + 'K';
+  return n.toString();
+}
+
+// ============================== TAB SWITCHING ==============================
+const navBtns = document.querySelectorAll('nav button');
+const views = document.querySelectorAll('.view');
+navBtns.forEach(btn => btn.addEventListener('click', () => {
+  navBtns.forEach(b => b.classList.remove('active'));
+  views.forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-' + btn.dataset.view).classList.add('active');
+  // Trigger chart resize for hidden charts
+  setTimeout(() => Object.values(window.__charts || {}).forEach(c => c && c.resize()), 50);
+}));
+
+// ============================== CHART DEFAULTS ==============================
+Chart.defaults.font.family = "'Heebo', 'Assistant', sans-serif";
+Chart.defaults.color = '#b8d0e8';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.07)';
+
+window.__charts = {};
+
+// ============================== TA OVERVIEW BAR ==============================
+const taLabels = TA_DATA.map(d => d.he);
+const taEU = TA_DATA.map(d => d.eu);
+const taFDA = TA_DATA.map(d => d.fda);
+
+window.__charts.taOverview = new Chart(document.getElementById('chartTAOverview'), {
+  type: 'bar',
+  data: {
+    labels: taLabels,
+    datasets: [
+      { label:'∆ EMA (שנים)', data: taEU, backgroundColor: 'rgba(79,156,249,0.85)', borderRadius: 6 },
+      { label:'∆ FDA (שנים)', data: taFDA, backgroundColor: 'rgba(249,115,22,0.85)', borderRadius: 6 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12 } } },
+      tooltip: { backgroundColor:'#0f1a2e', borderColor:'rgba(255,255,255,0.12)', borderWidth:1, padding:10, callbacks:{ label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' שנים' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 }, maxRotation: 45, minRotation: 30 } },
+      y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { stepSize: 2 }, title: { display: true, text: 'שנים', color: '#8faac8' } }
+    }
+  }
+});
+
+// ============================== PATIENTS PIE ==============================
+window.__charts.patients = new Chart(document.getElementById('chartPatients'), {
+  type: 'doughnut',
+  data: {
+    labels: TA_DATA.map(d => d.he),
+    datasets: [{
+      data: TA_DATA.map(d => d.pts),
+      backgroundColor: ['#4f9cf9','#a78bfa','#34d399','#f97316','#ef4444','#f59e0b','#06b6d4','#ec4899','#8b5cf6','#14b8a6','#22c55e','#eab308'],
+      borderColor: '#0f1a2e',
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + fmtNum(ctx.parsed) + ' מטופלים' } }
+    }
+  }
+});
+
+// ============================== APPROVAL DOUGHNUT ==============================
+const totPartial = TA_DATA.reduce((s,d) => s + d.partial, 0) / TA_DATA.length;
+const totFull = 1 - totPartial;
+window.__charts.approvalDoughnut = new Chart(document.getElementById('chartApprovalDoughnut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['אישור מלא', 'אישור חלקי'],
+    datasets: [{
+      data: [Math.round(totFull * 100), Math.round(totPartial * 100)],
+      backgroundColor: ['#34d399', '#f59e0b'],
+      borderColor: '#0f1a2e',
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 13 }, boxWidth: 14 } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.parsed + '%' } }
+    }
+  }
+});
+
+// ============================== TA CARDS ==============================
+const taGrid = document.getElementById('taGrid');
+TA_DATA.forEach(d => {
+  const card = document.createElement('div');
+  card.className = 'ta-card ' + d.color;
+  card.innerHTML = `
+    <div class="ta-name">${d.he}</div>
+    <div class="ta-name-en">${d.en}</div>
+    <div class="ta-stats">
+      <div class="ta-stat-mini">
+        <div class="lab">∆ EU AVG</div>
+        <div class="val">${d.eu}<span class="unit">y</span></div>
+      </div>
+      <div class="ta-stat-mini">
+        <div class="lab">∆ FDA AVG</div>
+        <div class="val">${d.fda}<span class="unit">y</span></div>
+      </div>
+    </div>
+    <div class="ta-patients">
+      <div class="lab">מטופלים מושפעים</div>
+      <div class="val">${fmtNum(d.pts)}</div>
+    </div>
+    <div style="display:flex; gap:0.5rem; margin-top:0.7rem;">
+      <div style="flex:${d.full*100}; height:6px; background:var(--strength); border-radius:3px;" title="מלא ${Math.round(d.full*100)}%"></div>
+      <div style="flex:${d.partial*100}; height:6px; background:var(--gold); border-radius:3px;" title="חלקי ${Math.round(d.partial*100)}%"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:0.4rem; font-size:0.7rem;">
+      <span style="color:var(--strength);">מלא ${Math.round(d.full*100)}%</span>
+      <span style="color:var(--gold);">חלקי ${Math.round(d.partial*100)}%</span>
+    </div>
+  `;
+  taGrid.appendChild(card);
+});
+
+// ============================== TRENDS LINE CHART ==============================
+const trendChips = document.getElementById('trendChips');
+const trendState = { selected: TA_DATA.slice(0,5).map(d => d.id) };
+TA_DATA.forEach(d => {
+  const chip = document.createElement('div');
+  chip.className = 'filter-chip' + (trendState.selected.includes(d.id) ? ' active' : '');
+  chip.textContent = d.he;
+  chip.dataset.taid = d.id;
+  chip.addEventListener('click', () => {
+    if (trendState.selected.includes(d.id)) {
+      trendState.selected = trendState.selected.filter(x => x !== d.id);
+      chip.classList.remove('active');
+    } else {
+      trendState.selected.push(d.id);
+      chip.classList.add('active');
+    }
+    renderTrend();
+  });
+  trendChips.appendChild(chip);
+});
+
+const TA_COLORS = {
+  rheum:'#4f9cf9', hema:'#a78bfa', psy:'#34d399', neuro:'#f97316', cardio:'#ef4444',
+  diab:'#f59e0b', pulm:'#06b6d4', onco:'#ec4899', hemo:'#8b5cf6', gastro:'#14b8a6', hiv:'#22c55e', vacc:'#eab308'
+};
+
+function renderTrend(){
+  const years = [2021,2022,2023,2024,2025];
+  const datasets = trendState.selected.map(taId => {
+    const ta = TA_DATA.find(t => t.id === taId);
+    return {
+      label: ta.he,
+      data: years.map(y => YEARLY[taId][y][0]),
+      borderColor: TA_COLORS[taId],
+      backgroundColor: TA_COLORS[taId] + '33',
+      tension: 0.35,
+      borderWidth: 2.5,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      spanGaps: true
+    };
+  });
+  if (window.__charts.trends) window.__charts.trends.destroy();
+  window.__charts.trends = new Chart(document.getElementById('chartTrends'), {
+    type: 'line',
+    data: { labels: years, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12 } } },
+        tooltip: { backgroundColor:'#0f1a2e', borderColor:'rgba(255,255,255,0.12)', borderWidth:1 }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true, title: { display: true, text: '∆ EU (שנים)' } }
+      }
+    }
+  });
+}
+renderTrend();
+
+// ============================== HEATMAP ==============================
+const heatmap = document.getElementById('heatmap');
+function renderHeatmap(){
+  const years = [2021,2022,2023,2024,2025];
+  let html = '<div style="overflow-x:auto;"><table style="width:100%; border-collapse:separate; border-spacing:3px;">';
+  html += '<tr><th style="padding:0.5rem; text-align:right; font-size:0.78rem; color:var(--text-muted); font-weight:500;">תחום</th>';
+  years.forEach(y => html += `<th style="padding:0.5rem; text-align:center; font-family:DM Mono,monospace; font-size:0.78rem; color:var(--text-muted); font-weight:500;">${y}</th>`);
+  html += '<th style="padding:0.5rem; text-align:center; font-size:0.78rem; color:var(--text-muted); font-weight:500;">ממוצע</th></tr>';
+  TA_DATA.forEach(t => {
+    html += `<tr><td style="padding:0.4rem 0.6rem; font-size:0.84rem; font-weight:600; color:white;">${t.he}</td>`;
+    years.forEach(y => {
+      const v = YEARLY[t.id][y][0];
+      const intensity = v === null ? 0 : Math.min(v / 12, 1);
+      const bg = v === null ? 'rgba(255,255,255,0.03)' : `rgba(239,68,68,${0.1 + intensity * 0.55})`;
+      const txt = v === null ? '—' : v;
+      const color = v === null ? 'var(--text-muted)' : (intensity > 0.45 ? '#fff' : 'var(--text-dim)');
+      html += `<td style="background:${bg}; padding:0.65rem; text-align:center; border-radius:6px; font-family:DM Mono,monospace; font-size:0.82rem; font-weight:600; color:${color};">${txt}</td>`;
+    });
+    html += `<td style="padding:0.65rem; text-align:center; font-family:DM Mono,monospace; font-size:0.84rem; font-weight:700; color:var(--accent);">${t.eu}</td>`;
+    html += '</tr>';
+  });
+  html += '</table>';
+  html += '<div style="display:flex; align-items:center; gap:0.7rem; margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">';
+  html += '<span>סקאלה (שנים):</span>';
+  [0,2,4,6,8,10].forEach(v => {
+    const intensity = Math.min(v / 12, 1);
+    const bg = `rgba(239,68,68,${0.1 + intensity * 0.55})`;
+    html += `<div style="display:flex; align-items:center; gap:0.3rem;"><div style="width:18px; height:18px; background:${bg}; border-radius:4px;"></div>${v}</div>`;
+  });
+  html += '</div></div>';
+  heatmap.innerHTML = html;
+}
+renderHeatmap();
+
+// ============================== APPROVAL STACKED BAR ==============================
+window.__charts.approvalStacked = new Chart(document.getElementById('chartApprovalStacked'), {
+  type: 'bar',
+  data: {
+    labels: TA_DATA.map(d => d.he),
+    datasets: [
+      { label:'אושר במלואו', data: TA_DATA.map(d => Math.round(d.full*100)), backgroundColor: '#34d399', borderRadius: 4, stack:'a' },
+      { label:'אושר חלקית', data: TA_DATA.map(d => Math.round(d.partial*100)), backgroundColor: '#f59e0b', borderRadius: 4, stack:'a' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12 } } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { maxRotation: 45, minRotation: 30 } },
+      y: { stacked: true, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => v + '%' } }
+    }
+  }
+});
+
+// ============================== DETAIL TABLE ==============================
+const taFilterChips = document.getElementById('taFilterChips');
+const taIds = ['__all__', ...new Set(DRUGS.map(d => d.taKey))];
+let activeTAFilter = '__all__';
+taIds.forEach(id => {
+  const chip = document.createElement('div');
+  chip.className = 'filter-chip' + (id === '__all__' ? ' active' : '');
+  if (id === '__all__') {
+    chip.textContent = 'הכל';
+  } else {
+    chip.textContent = TA_DATA.find(t => t.id === id).he;
+  }
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#taFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeTAFilter = id;
+    renderDetail();
+  });
+  taFilterChips.appendChild(chip);
+});
+
+function renderDetail(){
+  const body = document.getElementById('detailBody');
+  body.innerHTML = '';
+  const rows = activeTAFilter === '__all__' ? DRUGS : DRUGS.filter(d => d.taKey === activeTAFilter);
+  rows.forEach(d => {
+    const ta = TA_DATA.find(t => t.id === d.taKey);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="ta-tag" style="background:${TA_COLORS[d.taKey]}33; color:${TA_COLORS[d.taKey]};">${d.ta}</span></td>
+      <td class="num">${d.year}</td>
+      <td class="drug">${d.drug}</td>
+      <td class="indication">${d.ind}</td>
+      <td class="num">${d.ema}</td>
+      <td class="num">${d.fda}</td>
+      <td class="num">${d.dEU}</td>
+      <td class="num">${d.dFDA}</td>
+      <td class="check ${d.full ? 'full' : ''}">${d.full ? '✓' : ''}</td>
+      <td class="check ${d.partial ? 'partial' : ''}">${d.partial ? '✓' : ''}</td>
+      <td class="num">${d.pts}</td>
+    `;
+    body.appendChild(tr);
+  });
+}
+renderDetail();
+
+</script>
+</body>
+</html>
