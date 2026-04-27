@@ -71,23 +71,22 @@ header {
 .logo-group {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.95rem;
   flex-shrink: 0;
   min-width: 0;
 }
-.flag-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1.5px solid rgba(79,156,249,0.3);
+.brand-logo {
+  height: 52px;
+  width: auto;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  background: var(--bg3);
+  display: block;
 }
+.brand-logo .pi-text { fill: #e8f0fa; }
+.brand-logo .pi-ring-outer { fill: #1A7BA4; }
+.brand-logo .pi-ring-inner { fill: #1E8DBB; }
+.brand-logo .pi-core { fill: #f3f7fc; }
+.brand-logo .pi-spoke { stroke: #6b819e; }
+.brand-logo .pi-dot { fill: #6DBE45; }
 .logo-text-group { line-height: 1.25; text-align: right; }
 .logo-country {
   font-family: 'Heebo', sans-serif;
@@ -690,7 +689,34 @@ footer .src-link { color: var(--text-dim); }
 <header>
   <div class="header-inner">
     <div class="logo-group">
-      <div class="flag-badge">🇮🇱</div>
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-label="Pharma Israel">
+        <text x="72" y="32" font-family="Heebo, Arial, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="0.5" class="pi-text">PHARMA</text>
+        <text x="72" y="54" font-family="Heebo, Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="6" class="pi-text">ISRAEL</text>
+        <g transform="translate(150, 40)">
+          <circle cx="0" cy="0" r="34" class="pi-ring-outer"/>
+          <circle cx="0" cy="0" r="28" class="pi-ring-inner"/>
+          <circle cx="0" cy="0" r="22" class="pi-core"/>
+          <line x1="0" y1="0" x2="0" y2="-15" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="10.6" y2="-10.6" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="15" y2="0" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="10.6" y2="10.6" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="0" y2="15" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="-10.6" y2="10.6" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="-15" y2="0" stroke-width="1.5" class="pi-spoke"/>
+          <line x1="0" y1="0" x2="-10.6" y2="-10.6" stroke-width="1.5" class="pi-spoke"/>
+          <circle cx="0"     cy="-15"  r="3.5" class="pi-dot"/>
+          <circle cx="10.6"  cy="-10.6" r="3.5" class="pi-dot"/>
+          <circle cx="15"    cy="0"    r="3.5" class="pi-dot"/>
+          <circle cx="10.6"  cy="10.6" r="3.5" class="pi-dot"/>
+          <circle cx="0"     cy="15"   r="3.5" class="pi-dot"/>
+          <circle cx="-10.6" cy="10.6" r="3.5" class="pi-dot"/>
+          <circle cx="-15"   cy="0"    r="3.5" class="pi-dot"/>
+          <circle cx="-10.6" cy="-10.6" r="3.5" class="pi-dot"/>
+          <circle cx="0" cy="0" r="5" class="pi-dot"/>
+        </g>
+        <text x="228" y="32" font-family="Heebo, Assistant, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="0" class="pi-text">פארמה</text>
+        <text x="228" y="54" font-family="Heebo, Assistant, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="6" class="pi-text">ישראל</text>
+      </svg>
       <div class="logo-text-group">
         <div class="logo-country">סקר נגישות תרופות בישראל</div>
         <div class="logo-sub">DRUG ACCESS SURVEY · 2021–2025</div>
@@ -993,6 +1019,37 @@ footer .src-link { color: var(--text-dim); }
 </main>
 
 <footer>
+  <div style="display:flex; align-items:center; justify-content:center; gap:0.9rem; margin-bottom:0.7rem; flex-wrap:wrap;">
+    <svg class="brand-logo" style="height:44px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-label="Pharma Israel">
+      <text x="72" y="32" font-family="Heebo, Arial, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="0.5" class="pi-text">PHARMA</text>
+      <text x="72" y="54" font-family="Heebo, Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="6" class="pi-text">ISRAEL</text>
+      <g transform="translate(150, 40)">
+        <circle cx="0" cy="0" r="34" class="pi-ring-outer"/>
+        <circle cx="0" cy="0" r="28" class="pi-ring-inner"/>
+        <circle cx="0" cy="0" r="22" class="pi-core"/>
+        <line x1="0" y1="0" x2="0" y2="-15" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="10.6" y2="-10.6" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="15" y2="0" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="10.6" y2="10.6" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="0" y2="15" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="-10.6" y2="10.6" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="-15" y2="0" stroke-width="1.5" class="pi-spoke"/>
+        <line x1="0" y1="0" x2="-10.6" y2="-10.6" stroke-width="1.5" class="pi-spoke"/>
+        <circle cx="0"     cy="-15"  r="3.5" class="pi-dot"/>
+        <circle cx="10.6"  cy="-10.6" r="3.5" class="pi-dot"/>
+        <circle cx="15"    cy="0"    r="3.5" class="pi-dot"/>
+        <circle cx="10.6"  cy="10.6" r="3.5" class="pi-dot"/>
+        <circle cx="0"     cy="15"   r="3.5" class="pi-dot"/>
+        <circle cx="-10.6" cy="10.6" r="3.5" class="pi-dot"/>
+        <circle cx="-15"   cy="0"    r="3.5" class="pi-dot"/>
+        <circle cx="-10.6" cy="-10.6" r="3.5" class="pi-dot"/>
+        <circle cx="0" cy="0" r="5" class="pi-dot"/>
+      </g>
+      <text x="228" y="32" font-family="Heebo, Assistant, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="0" class="pi-text">פארמה</text>
+      <text x="228" y="54" font-family="Heebo, Assistant, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="6" class="pi-text">ישראל</text>
+    </svg>
+    <span style="font-size:0.78rem; color:var(--text-dim);">סקר של פארמה ישראל · ניתוח נתוני סל הבריאות 2021–2025</span>
+  </div>
   סקר נגישות תרופות · ישראל 2021–2025 · 12 תחומים טיפוליים · בהשוואה ל-EMA / FDA
   <br>
   <span class="src-link">מקורות: סל שירותי הבריאות · EMA · FDA · נתוני אומדן מטופלים מקומיים · Statista 2024</span>
@@ -1272,106 +1329,3 @@ renderTrend();
 const heatmap = document.getElementById('heatmap');
 function renderHeatmap(){
   const years = [2021,2022,2023,2024,2025];
-  let html = '<div style="overflow-x:auto;"><table style="width:100%; border-collapse:separate; border-spacing:3px;">';
-  html += '<tr><th style="padding:0.5rem; text-align:right; font-size:0.78rem; color:var(--text-muted); font-weight:500;">תחום</th>';
-  years.forEach(y => html += `<th style="padding:0.5rem; text-align:center; font-family:DM Mono,monospace; font-size:0.78rem; color:var(--text-muted); font-weight:500;">${y}</th>`);
-  html += '<th style="padding:0.5rem; text-align:center; font-size:0.78rem; color:var(--text-muted); font-weight:500;">ממוצע</th></tr>';
-  TA_DATA.forEach(t => {
-    html += `<tr><td style="padding:0.4rem 0.6rem; font-size:0.84rem; font-weight:600; color:white;">${t.he}</td>`;
-    years.forEach(y => {
-      const v = YEARLY[t.id][y][0];
-      const intensity = v === null ? 0 : Math.min(v / 12, 1);
-      const bg = v === null ? 'rgba(255,255,255,0.03)' : `rgba(239,68,68,${0.1 + intensity * 0.55})`;
-      const txt = v === null ? '—' : v;
-      const color = v === null ? 'var(--text-muted)' : (intensity > 0.45 ? '#fff' : 'var(--text-dim)');
-      html += `<td style="background:${bg}; padding:0.65rem; text-align:center; border-radius:6px; font-family:DM Mono,monospace; font-size:0.82rem; font-weight:600; color:${color};">${txt}</td>`;
-    });
-    html += `<td style="padding:0.65rem; text-align:center; font-family:DM Mono,monospace; font-size:0.84rem; font-weight:700; color:var(--accent);">${t.eu}</td>`;
-    html += '</tr>';
-  });
-  html += '</table>';
-  html += '<div style="display:flex; align-items:center; gap:0.7rem; margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">';
-  html += '<span>סקאלה (שנים):</span>';
-  [0,2,4,6,8,10].forEach(v => {
-    const intensity = Math.min(v / 12, 1);
-    const bg = `rgba(239,68,68,${0.1 + intensity * 0.55})`;
-    html += `<div style="display:flex; align-items:center; gap:0.3rem;"><div style="width:18px; height:18px; background:${bg}; border-radius:4px;"></div>${v}</div>`;
-  });
-  html += '</div></div>';
-  heatmap.innerHTML = html;
-}
-renderHeatmap();
-
-// ============================== APPROVAL STACKED BAR ==============================
-window.__charts.approvalStacked = new Chart(document.getElementById('chartApprovalStacked'), {
-  type: 'bar',
-  data: {
-    labels: TA_DATA.map(d => d.he),
-    datasets: [
-      { label:'אושר במלואו', data: TA_DATA.map(d => Math.round(d.full*100)), backgroundColor: '#34d399', borderRadius: 4, stack:'a' },
-      { label:'אושר חלקית', data: TA_DATA.map(d => Math.round(d.partial*100)), backgroundColor: '#f59e0b', borderRadius: 4, stack:'a' }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12 } } },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
-    },
-    scales: {
-      x: { stacked: true, grid: { display: false }, ticks: { maxRotation: 45, minRotation: 30 } },
-      y: { stacked: true, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => v + '%' } }
-    }
-  }
-});
-
-// ============================== DETAIL TABLE ==============================
-const taFilterChips = document.getElementById('taFilterChips');
-const taIds = ['__all__', ...new Set(DRUGS.map(d => d.taKey))];
-let activeTAFilter = '__all__';
-taIds.forEach(id => {
-  const chip = document.createElement('div');
-  chip.className = 'filter-chip' + (id === '__all__' ? ' active' : '');
-  if (id === '__all__') {
-    chip.textContent = 'הכל';
-  } else {
-    chip.textContent = TA_DATA.find(t => t.id === id).he;
-  }
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#taFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    activeTAFilter = id;
-    renderDetail();
-  });
-  taFilterChips.appendChild(chip);
-});
-
-function renderDetail(){
-  const body = document.getElementById('detailBody');
-  body.innerHTML = '';
-  const rows = activeTAFilter === '__all__' ? DRUGS : DRUGS.filter(d => d.taKey === activeTAFilter);
-  rows.forEach(d => {
-    const ta = TA_DATA.find(t => t.id === d.taKey);
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><span class="ta-tag" style="background:${TA_COLORS[d.taKey]}33; color:${TA_COLORS[d.taKey]};">${d.ta}</span></td>
-      <td class="num">${d.year}</td>
-      <td class="drug">${d.drug}</td>
-      <td class="indication">${d.ind}</td>
-      <td class="num">${d.ema}</td>
-      <td class="num">${d.fda}</td>
-      <td class="num">${d.dEU}</td>
-      <td class="num">${d.dFDA}</td>
-      <td class="check ${d.full ? 'full' : ''}">${d.full ? '✓' : ''}</td>
-      <td class="check ${d.partial ? 'partial' : ''}">${d.partial ? '✓' : ''}</td>
-      <td class="num">${d.pts}</td>
-    `;
-    body.appendChild(tr);
-  });
-}
-renderDetail();
-
-</script>
-</body>
-</html>
